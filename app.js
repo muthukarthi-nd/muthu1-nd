@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 
 
 // route
-app.use('/api/v1', dataRoute);
-app.use('/users', usersRouter);
+app.use('/api/v1', usersRouter);
+app.use('/users', dataRoute);
 
 
 // view engine setup

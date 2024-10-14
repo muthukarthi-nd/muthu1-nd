@@ -1,7 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const {getUser} = require('../controller/transaction');
 
-router.get('/userdata', getUser);
+var express = require('express');
+var router = express.Router();
+var {controller} =require('../controller/transactioncontroller');
+
+
+router.post('/', controller);
 
 module.exports = router;
