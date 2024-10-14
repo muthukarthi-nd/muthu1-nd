@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 
 // route
-app.use('/api', dataRoute);
+app.use('/api/v1', dataRoute);
 app.use('/users', usersRouter);
 
 
