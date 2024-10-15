@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -7,16 +8,21 @@ const bodyParser = require('body-parser');
 var connectDB=require('./config/db');
 var dataRoute=require('./route/transRoute');
 var usersRouter = require('./route/userRoute');
+const registerRoutes = require('./route/regloginroutes');
+
+
 var app = express();
 connectDB();
 
 // Middleware
 app.use(bodyParser.json());
 
+app.use(cors());
 
 // route
 app.use('/api/v1', usersRouter);
 app.use('/api/v1', dataRoute);
+app.use('/user/v2', registerRoutes);
 
 
 // view engine setup
