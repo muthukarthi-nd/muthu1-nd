@@ -62,11 +62,11 @@
 const userConnector = require('../connectors/userConnector');
 
 exports.getUser = async (req, res) => {
-    try {
-        const { accno, username } = req.query;
+try {
+const { accno, username } = req.query;
 
-        if (!accno && !username) {
-            return res.status(400).json({ message: 'Please provide either an account number or a username.' });
+if (!accno && !username) {
+return res.status(400).json({ message: 'Please provide either an account number or a username.' });
         }
 
         let user;
