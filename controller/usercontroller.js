@@ -58,7 +58,6 @@
 
 
 
-// userController.js
 const userConnector = require('../connectors/userConnector');
 
 exports.getUser = async (req, res) => {
@@ -92,7 +91,6 @@ return res.status(400).json({ message: 'Please provide either an account number 
             });
         }
 
-        // Find user by username
         if (username) {
             const users = await userConnector.findUserByUsername(username); 
             if (!users.length) {

@@ -9,7 +9,7 @@ var connectDB=require('./config/db');
 var dataRoute=require('./route/transRoute');
 var usersRouter = require('./route/userRoute');
 const registerRoutes = require('./route/regloginroutes');
-
+const adminRoutes = require('./route/adminRoutes');
 
 var app = express();
 connectDB();
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use('/api/v1', usersRouter);
 app.use('/api/v1', dataRoute);
 app.use('/user/v2', registerRoutes);
-
+app.use('/api/v2', adminRoutes);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,6 +40,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); 
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true'); // Allow credentials (cookies)
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+      return res.sendStatus(200);
+  }
+  next();
+});
 
 
 const PORT=process.env.PORT;
